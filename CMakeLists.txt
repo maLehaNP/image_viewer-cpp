@@ -19,6 +19,7 @@ qt_add_qml_module(QMLApp
     URI path      # ссылка, по которой будут загружаться файлы qml
     VERSION 1.0
     QML_FILES main.qml
+    RESOURCES test_images/69f86e59a86e8162aea80769f971435a.jpg  # доступный ресурс
 )
 
 target_link_libraries(QMLApp

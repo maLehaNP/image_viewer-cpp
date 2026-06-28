@@ -15,26 +15,28 @@ Window {
         height: 31
         text: "Выбрать папку"
       }
-      Text{
+      Text {
         text: "Текущая папка"
-        //font.pixelSize: 22
+        font.pixelSize: 22
         lineHeightMode: Text.FixedHeight
         lineHeight: 31  // высота - 31 пикселей
       }
       Layout.alignment: Qt.AlignTop
     }
-    Text{
+    Text {
       text: "name"
+      font.pixelSize: 22
       lineHeightMode: Text.FixedHeight
       lineHeight: 31  // высота - 31 пикселей
       Layout.preferredHeight: 31
       Layout.fillWidth: true
     }
-    Rectangle{
+    Image {
       id: image
-      color: "#16a085"    // зеленый
       Layout.preferredHeight: 591
       Layout.fillWidth: true
+      source: "test_images/69f86e59a86e8162aea80769f971435a.jpg"
+      fillMode: Image.PreserveAspectFit
     }
     Row {
       Button {
