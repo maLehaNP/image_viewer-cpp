@@ -18,7 +18,7 @@ qt_standard_project_setup()
 # Определяем компилируемые файлы
 qt_add_executable(ImVi
   src/main.cpp
-  src/buttonHandler.cpp
+  src/backend.cpp
 )
 
 target_include_directories(ImVi
@@ -34,11 +34,11 @@ qt_add_qml_module(ImVi
   QML_FILES
     src/main.qml
   # доступный ресурс
-  RESOURCES
-    test_images/69f86e59a86e8162aea80769f971435a.jpg
+  #RESOURCES
+  #  test_images/69f86e59a86e8162aea80769f971435a.jpg
   SOURCES
-    include/buttonHandler.h
-    src/buttonHandler.cpp
+    include/backend.h
+    src/backend.cpp
 )
 
 target_link_libraries(ImVi

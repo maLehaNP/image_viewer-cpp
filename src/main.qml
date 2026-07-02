@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import buttonHandler
+import backend
 
 Window {
   title: qsTr("Image Viewer")
@@ -10,8 +10,15 @@ Window {
   height: 720
   visible: true
 
-  ButtonHandler {
-    id: buttonHandler
+  id: window
+  property string path: "Текущая папка"
+  property string imageName: "name"
+  property url imageUrl
+  property bool isFirst: true
+  property bool isLast: true
+
+  Backend {
+    id: backend
   }
 
   ColumnLayout {
@@ -22,10 +29,11 @@ Window {
         width: 121 //71
         height: 31
         text: "Выбрать папку"
-        onClicked: buttonHandler.handleClick(0)
+        onClicked: backend.handleClick(0)
       }
       Text {
-        text: "Текущая папка"
+        id: link
+        text: window.path
         font.pixelSize: 22
         lineHeightMode: Text.FixedHeight
         lineHeight: 31  // высота - 31 пикселей
@@ -33,7 +41,7 @@ Window {
       Layout.alignment: Qt.AlignTop
     }
     Text {
-      text: "name"
+      text: window.imageName
       font.pixelSize: 22
       lineHeightMode: Text.FixedHeight
       lineHeight: 31  // высота - 31 пикселей
@@ -46,7 +54,7 @@ Window {
       objectName: "image"
       Layout.preferredHeight: 591
       Layout.fillWidth: true
-      source: "../test_images/69f86e59a86e8162aea80769f971435a.jpg"
+      source: window.imageUrl
       fillMode: Image.PreserveAspectFit
     }
     Row {
@@ -55,30 +63,39 @@ Window {
         width: 101
         height: 51
         text: "Первый"
+        onClicked: backend.handleClick(1)
+        enabled: !isFirst
       }
       Button {
         objectName: "prevBtn"
         width: 101
         height: 51
         text: "Пред."
+        onClicked: backend.handleClick(2)
+        enabled: !isFirst
       }
       Button {
         objectName: "slideShowBtn"
         width: 101
         height: 51
         text: "Слайд-шоу"
+        onClicked: backend.handleClick(3)
       }
       Button {
         objectName: "nextBtn"
         width: 101
         height: 51
         text: "След."
+        onClicked: backend.handleClick(4)
+        enabled: !isLast
       }
       Button {
         objectName: "lastBtn"
         width: 101
         height: 51
         text: "Последний"
+        onClicked: backend.handleClick(5)
+        enabled: !isLast
       }
       Button {
         objectName: "turnBtn"
