@@ -8,31 +8,29 @@ extern QDir dir;
 extern QStringList imList;
 extern QObject* window;
 
-void ButtonHandler::handleClick() {
-  //std::cout << "aboba" << '\n';
+void ButtonHandler::handleClick(int sender) {
+  std::cout << sender << '\n';
 
-  //QMessageBox msgBox;     // диалоговое окно
-  //msgBox.setText("Button Clicked!"); // устанавливаем текст
-  //msgBox.exec();  // отображаем диалоговое окно
+  switch (sender) {
+    case FOLDER_BTN:
+    {
+      bool ok{};
+      QString path = QInputDialog::getText(nullptr,
+        tr("Выбор папки"), tr("Адрес папки:"),
+        QLineEdit::Normal, QDir::currentPath(), &ok);
+      std::cout << ok << ' ' << path.toStdString() << '\n';
 
-  bool ok{};
-  QString path = QInputDialog::getText(nullptr,
-    tr("Выбор папки"), tr("Адрес папки:"),
-    QLineEdit::Normal, QDir::currentPath(), &ok);
-  
-  std::cout << ok << ' ' << path.toStdString() << '\n';
-  //printf("%d %s\n", ok, text.toStdString());
-  
-  if (ok && !path.isEmpty())
-    dir.setPath(path);
-  //std::cout << dir.path().toStdString() << '\n';
+      if (ok && !path.isEmpty())
+        dir.setPath(path);
+      imList = dir.entryList();
 
-  imList = dir.entryList();
-  //for (const auto &file : imList) {
-  //  std::cout << file.toStdString() << '\n';
-  //}
+      QObject* image = window->findChild<QObject*>("image");
+      image->setProperty("source", QUrl::fromLocalFile(dir.path() + '/' + imList[0]));
+      break;
+    }
+    default:
+      break;
+  }
 
-  QObject* image = window->findChild<QObject*>("image");
-  image->setProperty("source", QUrl::fromLocalFile(dir.path() + '/' + imList[0]));
 }
 

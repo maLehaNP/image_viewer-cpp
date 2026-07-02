@@ -22,7 +22,7 @@ Window {
         width: 121 //71
         height: 31
         text: "Выбрать папку"
-        onClicked: buttonHandler.handleClick()
+        onClicked: buttonHandler.handleClick(0)
       }
       Text {
         text: "Текущая папка"
