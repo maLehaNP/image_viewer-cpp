@@ -4,14 +4,15 @@ import QtQuick.Layouts
 
 Window {
   title: qsTr("Image Viewer")
-  //width: 300
-  //height: 250
+  width: 1280
+  height: 720
   visible: true
   ColumnLayout {
     anchors.fill: parent
     Row {
       Button {
-        width: 101 //71
+        objectName: "folderBtn"
+        width: 121 //71
         height: 31
         text: "Выбрать папку"
       }
@@ -29,7 +30,8 @@ Window {
       lineHeightMode: Text.FixedHeight
       lineHeight: 31  // высота - 31 пикселей
       Layout.preferredHeight: 31
-      Layout.fillWidth: true
+      //Layout.fillWidth: true
+      Layout.alignment: Qt.AlignHCenter
     }
     Image {
       id: image
@@ -40,36 +42,43 @@ Window {
     }
     Row {
       Button {
+        objectName: "firstBtn"
         width: 101
         height: 51
         text: "Первый"
       }
       Button {
+        objectName: "prevBtn"
         width: 101
         height: 51
         text: "Пред."
       }
       Button {
+        objectName: "slideShowBtn"
         width: 101
         height: 51
         text: "Слайд-шоу"
       }
       Button {
+        objectName: "nextBtn"
         width: 101
         height: 51
         text: "След."
       }
       Button {
+        objectName: "lastBtn"
         width: 101
         height: 51
         text: "Последний"
       }
       Button {
+        objectName: "turnBtn"
         width: 101
         height: 51
         text: "По час."
       }
       Button {
+        objectName: "delBtn"
         width: 101
         height: 51
         text: "Удалить"
