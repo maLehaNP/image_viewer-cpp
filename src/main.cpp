@@ -3,8 +3,16 @@
 #include <QGuiApplication>
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include <QDir>
 
 #include <buttonHandler.h>
+
+
+QObject* window;
+QDir dir;
+QStringList imList;
+int listIdx;
+int listLen;
 
 
 int main(int argc, char *argv[]) {
@@ -18,8 +26,12 @@ int main(int argc, char *argv[]) {
   const QUrl url("qrc:/path/src/main.qml");  // ссылка на файл qml
   engine.load(url);                          // загружаем файл qml
 
+  QStringList filters;
+  filters << "*.jpg";
+  dir.setNameFilters(filters);
+
   // получаем корневой объект - окно приложения
-  QObject *window = engine.rootObjects().first();
+  window = engine.rootObjects().first();
   // получаем в окне элементы кнопок
   //QObject *folderBtn = window->findChild<QObject *>("folderBtn");
   //QObject *prevBtn = window->findChild<QObject *>("prevBtn");

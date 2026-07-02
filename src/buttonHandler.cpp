@@ -4,6 +4,9 @@
 #include <QInputDialog>
 #include <QDir>
 
+extern QDir dir;
+extern QStringList imList;
+extern QObject* window;
 
 void ButtonHandler::handleClick() {
   //std::cout << "aboba" << '\n';
@@ -13,14 +16,23 @@ void ButtonHandler::handleClick() {
   //msgBox.exec();  // отображаем диалоговое окно
 
   bool ok{};
-  QString text = QInputDialog::getText(nullptr,
+  QString path = QInputDialog::getText(nullptr,
     tr("Выбор папки"), tr("Адрес папки:"),
     QLineEdit::Normal, QDir::currentPath(), &ok);
   
-  std::cout << ok << ' ' << text.toStdString() << '\n';
+  std::cout << ok << ' ' << path.toStdString() << '\n';
   //printf("%d %s\n", ok, text.toStdString());
+  
+  if (ok && !path.isEmpty())
+    dir.setPath(path);
+  //std::cout << dir.path().toStdString() << '\n';
 
-  //if (ok && !text.isEmpty())
-  //  textLabel->setText(text);
+  imList = dir.entryList();
+  //for (const auto &file : imList) {
+  //  std::cout << file.toStdString() << '\n';
+  //}
+
+  QObject* image = window->findChild<QObject*>("image");
+  image->setProperty("source", QUrl::fromLocalFile(dir.path() + '/' + imList[0]));
 }
 

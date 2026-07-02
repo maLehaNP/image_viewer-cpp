@@ -43,6 +43,7 @@ Window {
     }
     Image {
       id: image
+      objectName: "image"
       Layout.preferredHeight: 591
       Layout.fillWidth: true
       source: "../test_images/69f86e59a86e8162aea80769f971435a.jpg"
