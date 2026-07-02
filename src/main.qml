@@ -2,11 +2,18 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
 
+//import buttonHandler
+
 Window {
   title: qsTr("Image Viewer")
   width: 1280
   height: 720
   visible: true
+
+  //ButtonHandler {
+  //  id: buttonHandler
+  //}
+
   ColumnLayout {
     anchors.fill: parent
     Row {
@@ -15,6 +22,7 @@ Window {
         width: 121 //71
         height: 31
         text: "Выбрать папку"
+        //onClicked: buttonHandler.handleClick()
       }
       Text {
         text: "Текущая папка"
@@ -37,7 +45,7 @@ Window {
       id: image
       Layout.preferredHeight: 591
       Layout.fillWidth: true
-      source: "test_images/69f86e59a86e8162aea80769f971435a.jpg"
+      source: "../test_images/69f86e59a86e8162aea80769f971435a.jpg"
       fillMode: Image.PreserveAspectFit
     }
     Row {
