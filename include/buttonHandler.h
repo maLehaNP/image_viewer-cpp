@@ -3,11 +3,12 @@
  
 #include <QObject>
  
-class ButtonHandler: public QObject
-{
+class ButtonHandler: public QObject {
   Q_OBJECT
+
 public:
-  ButtonHandler(QObject *parent = nullptr){}
+  ButtonHandler(QObject *parent = nullptr) : QObject{parent} {}
+
 public slots:
   Q_INVOKABLE void handleClick();
 };

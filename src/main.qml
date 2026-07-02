@@ -2,7 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls
 import QtQuick.Layouts
 
-//import buttonHandler
+import buttonHandler
 
 Window {
   title: qsTr("Image Viewer")
@@ -10,9 +10,9 @@ Window {
   height: 720
   visible: true
 
-  //ButtonHandler {
-  //  id: buttonHandler
-  //}
+  ButtonHandler {
+    id: buttonHandler
+  }
 
   ColumnLayout {
     anchors.fill: parent
@@ -22,7 +22,7 @@ Window {
         width: 121 //71
         height: 31
         text: "Выбрать папку"
-        //onClicked: buttonHandler.handleClick()
+        onClicked: buttonHandler.handleClick()
       }
       Text {
         text: "Текущая папка"

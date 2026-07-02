@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    Quick Widgets
 #)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick Widgets)
 
 qt_standard_project_setup()
 
@@ -28,16 +28,23 @@ target_include_directories(ImVi
 
 # Добавляем файлы qml
 qt_add_qml_module(ImVi
-  URI path      # ссылка, по которой будут загружаться файлы qml
+  # ссылка, по которой будут загружаться файлы qml
+  URI path
   VERSION 1.0
-  QML_FILES src/main.qml
-  RESOURCES test_images/69f86e59a86e8162aea80769f971435a.jpg  # доступный ресурс
+  QML_FILES
+    src/main.qml
+  # доступный ресурс
+  RESOURCES
+    test_images/69f86e59a86e8162aea80769f971435a.jpg
+  SOURCES
+    include/buttonHandler.h
+    src/buttonHandler.cpp
 )
 
 target_link_libraries(ImVi
   PRIVATE
     Qt6::Quick
-    #Qt6::Widgets
+    Qt6::Widgets
 )
 
 # include(GNUInstallDirs)
